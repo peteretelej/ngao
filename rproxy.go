@@ -48,7 +48,6 @@ func rProxy(listenAddr, remoteHost, scheme string) {
 			// User with and retired session
 			if resetsess {
 				id, allowed := handleNew()
-				log.Printf("id: %v, allowed=%v", id, allowed)
 				session.Values["sessid"] = id
 				allow = allowed
 				if !allowed {

@@ -2,7 +2,6 @@ package ngao
 
 import (
 	"errors"
-	"log"
 	"sync"
 	"time"
 )
@@ -120,10 +119,7 @@ func isAllowed(n int) (allowed bool, ErrNotWaiting error) {
 		if len(nconfig.Allowed) < totalAllowed {
 			nconfig.AllowedMap[n] = 1
 			nconfig.Allowed = append(nconfig.Allowed, n)
-
 			delete(nconfig.WaitingMap, n)
-			log.Print("Total allowed: ", len(nconfig.Allowed))
-
 			return true, nil
 		} else {
 			return false, nil

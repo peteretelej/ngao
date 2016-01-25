@@ -80,10 +80,7 @@ func Run(c *Config) {
 }
 func initConf() {
 	t := time.Now().Format("20060102150405")
-	i, err := strconv.Atoi(t)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
+	i, _ := strconv.Atoi(t)
 	uniqgen = &uniqData{
 		uniqID: i,
 	}
