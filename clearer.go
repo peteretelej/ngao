@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// conf defines properties used to handle clearing sessions
 type conf struct {
 	AllowedMap map[int]int
 	Allowed    []int
@@ -25,6 +26,7 @@ type uniqData struct {
 
 var uniqgen *uniqData
 
+// getUniqID returns a unique ID for identifying
 func getUniqID() (i int) {
 	uniqgen.Lock()
 	defer uniqgen.Unlock()
@@ -68,6 +70,7 @@ func clearer() {
 	}
 }
 
+// Adds session to waiting queue
 func (c *conf) addWaiting(n int) {
 	l := len(c.Waiting)
 	c.Waiting = append(c.Waiting, n)

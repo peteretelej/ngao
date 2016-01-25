@@ -2,8 +2,12 @@
 Package ngao (shield) is a reverse proxy that limits the maximum number of connections
 to an upstream host.
 
+Do NOT use as-is in production, use Nginx instead.
+
 Usage:
+
 Get the package
+
    go get github.com/etelej/ngao
 
 Import into your application:

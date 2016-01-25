@@ -58,7 +58,7 @@ func rProxy(listenAddr, remoteHost, scheme string) {
 			}
 			session.Save(r, w)
 
-			// Handle waiting user
+			// Handle waiting user, notify when they can access
 			if !allow {
 				w.Write([]byte("Please try again later at: " + wait))
 				return
