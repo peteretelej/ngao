@@ -1,8 +1,30 @@
 /*
-Package ngao is a reverse proxy that limits the maximum number of connections
+Package ngao (shield) is a reverse proxy that limits the maximum number of connections
 to an upstream host.
 
+Usage:
+Get the package
+   go get github.com/etelej/ngao
 
+Import into your application:
+
+   import "github.com/etelej/ngao"
+
+Set your configuration details, and run ngao:
+
+   func main() {
+      c := &ngao.Config{
+         ListenAddr:    ":9015",          // your listen address e.g ":9010"
+   	     Host:          "dev.etelej.com", // the backend server to reverseproxy
+         Scheme:        "https",          // protocol scheme of backend host e.g. https, http
+   		 TotalAllowed:  4,                // Maximum client sessions allowed
+   	     ClearInterval: 60 * 5,           // Interval to clear older sessions (secs)
+   	  }
+      ngao.Run(c)
+   }
+   ngao.Run(c)
+
+ngao was written by Peter Etelej <peter@etelej.com>
 */
 package ngao
 
@@ -15,12 +37,13 @@ import (
 	"github.com/gorilla/sessions"
 )
 
+// Config allows configuring of ngao's options
 type Config struct {
-	ListenAddr    string // your listen address e.g ":9010"
-	Host          string // the backend server to reverseproxy
-	Scheme        string // protocol scheme of host e.g. https, http
-	TotalAllowed  int    // Total client sessions allowed
-	ClearInterval int    // Interval to clear older sessions (secs)
+	ListenAddr    string
+	Host          string
+	Scheme        string
+	TotalAllowed  int
+	ClearInterval int
 }
 
 var store = sessions.NewCookieStore([]byte("ngao"))
