@@ -27,7 +27,7 @@ func main() {
 
 
 ### USE NGINX
-Note: This should not be used as-is anywhere in production. Use Nginx as it is a more mature reverse proxy that can easily achieve this, and I can't vouch for this package as I'm still learning Go.
+Note: This should not be used as-is anywhere in production. Use Nginx as it can easily achieve this, and I can't vouch for this package as I'm still learning Go.
 
 
 
