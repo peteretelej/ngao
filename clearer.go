@@ -88,7 +88,7 @@ func (c *conf) addWaiting(n int) {
 func (c *conf) deleteWaiting(n int) {
 	delete(c.WaitingMap, n)
 	c.Waiting = nil
-	for key, _ := range c.WaitingMap {
+	for key := range c.WaitingMap {
 		c.Waiting = append(c.Waiting, key)
 	}
 }
@@ -101,12 +101,12 @@ func (c *conf) addAllowed(n int) {
 func (c *conf) deleteAllowed(n int) {
 	delete(c.AllowedMap, n)
 	c.Allowed = nil
-	for key, _ := range c.AllowedMap {
+	for key := range c.AllowedMap {
 		c.Allowed = append(c.Allowed, key)
 	}
 }
 
-func isAllowed(n int) (allowed bool, ErrNotWaiting error) {
+func isAllowed(n int) (allowed bool, err error) {
 	nconfig.Lock()
 	defer nconfig.Unlock()
 
@@ -121,9 +121,9 @@ func isAllowed(n int) (allowed bool, ErrNotWaiting error) {
 			nconfig.Allowed = append(nconfig.Allowed, n)
 			delete(nconfig.WaitingMap, n)
 			return true, nil
-		} else {
-			return false, nil
 		}
+		return false, nil
+
 	}
 	return false, errors.New("Session not waiting")
 }
