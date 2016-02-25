@@ -17,7 +17,7 @@ Set your configuration details, and run ngao:
    func main() {
       c := &ngao.Config{
          ListenAddr:    ":9015",          // your listen address e.g ":9010"
-   	     Host:          "dev.etelej.com", // the backend server to reverseproxy
+   	     Host:          "etelej.com", // the backend server to reverseproxy
          Scheme:        "https",          // protocol scheme of backend host e.g. https, http
    		 TotalAllowed:  4,                // Maximum client sessions allowed
    	     ClearInterval: 60 * 5,           // Interval to clear older sessions (secs)
@@ -54,9 +54,10 @@ var totalAllowed, clearInterval int
 
 // Run launches ngao reverse proxy
 func Run(c *Config) {
-	log.Printf("Starting Ngao server: Listening on '%s', Serving: %s on scheme %s",
-		c.ListenAddr, c.Host, c.Scheme)
-	log.Printf("Max client sessions: %d. Clear older sessions interval: %d secs",
+	log.Print("Starting Ngao server")
+	log.Printf("Listening on '%s', Serving: %s://%s",
+		c.ListenAddr, c.Scheme, c.Host)
+	log.Printf("Max sessions: %d. Older sessions cleared every: %d secs",
 		c.TotalAllowed, c.ClearInterval)
 
 	totalAllowed = c.TotalAllowed
@@ -71,7 +72,8 @@ func Run(c *Config) {
 	}()
 	wg.Add(1)
 	go func() {
-		clearer()
+		// Launch session queues manager
+		manager()
 		wg.Done()
 	}()
 	wg.Wait()

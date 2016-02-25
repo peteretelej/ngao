@@ -16,7 +16,7 @@ import "github.com/etelej/ngao"
 func main() {
 	c := &ngao.Config{
 		ListenAddr:    ":9015",          // your listen address e.g ":9010"
-		Host:          "dev.etelej.com", // the backend server to reverseproxy
+		Host:          "etelej.com", // the backend server to reverseproxy
 		Scheme:        "https",          // protocol scheme of backend host e.g. https, http
 		TotalAllowed:  20,                // Maximum client sessions allowed
 		ClearInterval: 60 * 5,           // Interval to clear older sessions (secs)
