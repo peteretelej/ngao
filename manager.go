@@ -34,9 +34,8 @@ func getUniqID() (i int) {
 	return i
 }
 
-// clearer handles adding waiting users to allowed list
-// and displacing previously allowed users
-func clearer() {
+// manager manages sessions in waiting and allowed lists
+func manager() {
 	for {
 		nconfig.RLock()
 		ca := nconfig.Allowed
