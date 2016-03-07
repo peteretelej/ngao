@@ -6,11 +6,11 @@ Usage:
 
 Get the package
 
-   go get github.com/etelej/ngao
+   go get github.com/peteretelej/ngao
 
 Import into your application:
 
-   import "github.com/etelej/ngao"
+   import "github.com/peteretelej/ngao"
 
 Set your configuration details, and run ngao:
 

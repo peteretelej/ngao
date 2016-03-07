@@ -11,7 +11,7 @@ Ngao is useful if you have want to rate limit access to your application/backend
 ```go
 package main
 
-import "github.com/etelej/ngao"
+import "github.com/peteretelej/ngao"
 
 func main() {
 	c := &ngao.Config{

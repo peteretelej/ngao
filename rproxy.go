@@ -10,7 +10,7 @@ import (
 )
 
 // rProxy is a single host reverse proxy implementation
-// See github.com/etelej/rproxy
+// See github.com/peteretelej/rproxy
 func rProxy(listenAddr, remoteHost, scheme string) {
 	http.HandleFunc("/",
 		func(w http.ResponseWriter, r *http.Request) {
